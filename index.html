@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="index.js"></script>
+    <script src="vue.global.js"></script>
+</head>
+<body>
+    <div class="app" >
+        <h1>You clicked on {{clicked}}</h1>
+        <div class="main" v-for="row in rows" >
+                <div v-for="col in cols">
+                    
+                    <div @click="clicked = num[row-1].toString() + alpha[col-1]" class="white col" v-if="(col+row)%2 == 0" v-bind:style="{ backgroundColor: white}"><span v-if="col==1">{{num[row-1]}}</span><span class="alph" v-if="row==8">{{alpha[col-1]}}</span></div>
+
+                    <div @click="clicked = num[row-1].toString() + alpha[col-1]" class="black col" v-if="(col+row)%2 == 1" v-bind:style="{ backgroundColor: black}"><span v-if="col==1">{{num[row-1]}}</span><span class="alph"v-if="row==8">{{alpha[col-1]}}</span></div>
+                </div>
+                <div style="clear: both;"></div>
+        </div>
+        <div class="foo">
+            
+            <div @click=""><label for="wh">Player 1</label><input class="color" name="wh" type="color" v-model="white"></div>
+            <button id="flip" @click="rows.reverse()" style="margin: 0 auto;">Flip Board</button>
+            <div><label for="wh">Player 2</label><input class="color" type="color" v-model="black"></div>
+
+        </div>
+
+    </div>
+
+    <style>
+        div{
+            position: relative;
+        }
+        .app{
+            justify-content: center;
+        }
+        h1{
+            text-align: center;
+        }
+        .alph{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+        .foo{
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            align-content: space-around;
+            position: relative;
+        }
+        .foo div{
+            margin: auto;
+        }
+        .main{
+            display: flex;
+            justify-content: center;
+        }
+        .col{
+            width: 60px;
+            height: 60px;
+            margin: 1px;
+            float: left;
+            border: solid black;
+        }
+        .black{
+            background-color: rgb(157, 36, 36);
+
+        }
+        .white{
+            background-color: white;
+        }
+        #flip{
+            display: block;
+            margin: 0 auto;
+        }
+        .color{
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+   
+    
+</body>
+<script>
+
+</script>
+<script>
+    const app = {
+    data(){
+        return{
+            black: {
+                backgroundColor: ''
+            },
+            white: {
+                backgroundColor: ''
+            },
+            rows: [1,2,3,4,5,6,7,8],
+            cols: [1,2,3,4,5,6,7,8],
+            num: [8,7,6,5,4,3,2,1],
+            alpha: ["a","b","c","d","e","f","g","h"],
+            clicked: ''
+
+        }
+        
+    },
+    
+    methods: {
+
+    }
+
+    
+}
+
+
+
+Vue.createApp(app).mount('.app');
+</script>
+</html>
